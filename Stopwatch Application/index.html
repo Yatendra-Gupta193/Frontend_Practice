@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch Pro</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="background-bubbles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="wrapper" role="application" aria-label="Stopwatch application">
+      <header class="titlebar">
+        <h1 class="title">⏱ Stopwatch Pro</h1>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">🌙 Dark</button>
+      </header>
+
+      <section class="card">
+        <div class="time" aria-live="polite">
+          <div class="time-row">
+            <span class="label">Hours</span>
+            <span class="value hour">00</span>
+          </div>
+          <div class="time-row">
+            <span class="label">Minutes</span>
+            <span class="value minute">00</span>
+          </div>
+          <div class="time-row">
+            <span class="label">Seconds</span>
+            <span class="value second">00</span>
+          </div>
+          <div class="time-row">
+            <span class="label ms-label">Milliseconds</span>
+            <span class="value millisecond">00</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <div class="buttons">
+            <button class="start" type="button" aria-label="Start (Space)">▶ Start</button>
+            <button class="stop" type="button" aria-label="Stop (Space)">⏸ Stop</button>
+            <button class="reset" type="button" aria-label="Reset (R)">🔄 Reset</button>
+            <button class="lap" type="button" aria-label="Lap (L)">🏁 Lap</button>
+          </div>
+
+          <div class="best-time">
+            <div class="best-title">Best Time</div>
+            <div class="best-value" id="bestTime">00:00:00.00</div>
+          </div>
+        </div>
+
+        <div class="laps">
+          <h2 class="laps-title">Lap History</h2>
+          <div class="laps-list" id="lapsList" role="list" aria-label="Lap history">
+            <div class="empty">No laps yet. Click <b>Lap</b> while running.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+

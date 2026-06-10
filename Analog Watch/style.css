@@ -1,0 +1,356 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+:root{
+    --bg: #1E1E2E;
+    --face: #2D2D3A;
+    --text: #F1F1F1;
+    --tick: rgba(241, 241, 241, 0.35);
+    --tick-strong: rgba(241, 241, 241, 0.65);
+
+    --hour: #FFFFFF;
+    --minute: #00D4FF;
+    --second: #FF4757;
+
+    --glow: rgba(0, 212, 255, 0.4);
+    --shadow: rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme="light"]{
+    --bg: #F4F6FF;
+    --face: #EAEAF7;
+    --text: #1B1B22;
+    --tick: rgba(27, 27, 34, 0.25);
+    --tick-strong: rgba(27, 27, 34, 0.5);
+    --shadow: rgba(0, 0, 0, 0.18);
+    --glow: rgba(0, 212, 255, 0.35);
+}
+
+body{
+    min-height: 100vh;
+    background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 212, 255, 0.15), transparent 60%),
+                radial-gradient(900px 700px at 80% 40%, rgba(255, 71, 87, 0.12), transparent 55%),
+                var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem;
+    color: var(--text);
+}
+
+.container{
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 1.2rem;
+}
+
+.topbar{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.theme-toggle{
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+
+:root[data-theme="light"] .theme-toggle{
+    border-color: rgba(27,27,34,0.2);
+    background: rgba(255,255,255,0.7);
+}
+
+.theme-toggle:hover{ transform: translateY(-1px) scale(1.02); }
+
+.theme-toggle:focus-visible{
+    outline: 3px solid rgba(0, 212, 255, 0.45);
+    outline-offset: 3px;
+}
+
+.theme-icon{
+    display: inline-flex;
+    margin-right: 0.45rem;
+    transform: translateY(1px);
+}
+
+.theme-text{
+    font-weight: 700;
+}
+
+
+.clock{
+    width: clamp(240px, 40vw, 360px);
+    height: clamp(240px, 40vw, 360px);
+    border-radius: 50%;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+    background-color: rgba(255, 255, 255, 0.03);
+
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow:
+        0 34px 90px var(--shadow),
+        0 0 0 2px rgba(0, 212, 255, 0.16),
+        0 0 46px rgba(0, 212, 255, 0.12);
+
+    animation: fadeIn 600ms ease both;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+
+.clock:hover{
+    transform: scale(1.02);
+}
+
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translateY(6px); }
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+/* Inner glass */
+.clock::before{
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 25% 18%, rgba(255,255,255,0.28), transparent 42%),
+        radial-gradient(circle at 75% 80%, rgba(0,212,255,0.16), transparent 50%),
+        rgba(45, 45, 58, 0.15);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow:
+        inset 0 0 18px rgba(255,255,255,0.10),
+        inset 0 0 40px rgba(0,0,0,0.25);
+    pointer-events: none;
+}
+
+/* Glass reflection overlay */
+.clock::after{
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    background: linear-gradient(115deg,
+        rgba(255,255,255,0.00) 0%,
+        rgba(255,255,255,0.08) 35%,
+        rgba(255,255,255,0.22) 48%,
+        rgba(255,255,255,0.02) 64%,
+        rgba(255,255,255,0.00) 100%);
+    transform: translateY(-8px);
+    opacity: 0.95;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+
+
+.ticks{
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+
+.tick{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2px;
+    height: 12px;
+    background: var(--tick);
+    border-radius: 999px;
+    transform-origin: 50% 100%;
+    will-change: transform;
+}
+
+
+.tick.strong{
+    width: 3.2px;
+    height: 20px;
+    background: var(--tick-strong);
+    box-shadow: 0 0 14px rgba(0, 212, 255, 0.18);
+}
+
+
+.clock span{
+    position: absolute;
+    transform: rotate(calc(30deg * var(--i)));
+    inset: 0;
+    text-align: center;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+}
+
+/* Number placement: rotate wrapper, then move inward */
+.clock .num{
+    transform: rotate(calc(30deg * var(--i))) translateY(-34px);
+    inset: 0;
+}
+
+
+
+.clock span{
+    transform-origin: 50% 50%;
+}
+
+.clock .num b{
+
+    transform: rotate(calc(-30deg * var(--i)));
+    display: inline-block;
+    font-size: clamp(14px, 3.7vw, 20px);
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.16);
+}
+
+
+.center-dot{
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff, rgba(255,255,255,0.55));
+    box-shadow: 0 0 0 6px rgba(0, 212, 255, 0.12), 0 0 24px rgba(0, 212, 255, 0.25);
+    z-index: 10;
+}
+
+.center-dot{ left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+.hand{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: bottom center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 6;
+    transition: transform 80ms linear, filter 180ms ease;
+}
+
+
+
+.hand i{
+    position: absolute;
+    background-color: var(--clr);
+    width: var(--w);
+    height: var(--h);
+    border-radius: 999px;
+    box-shadow: 0 0 18px var(--glow);
+}
+
+.hand::after{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* Tail for second hand */
+.sec .sec-tail{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(180deg) translateY(18px);
+    width: var(--tail-w);
+    height: var(--tail-h);
+    background: rgba(255,71,87,0.75);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(255, 71, 87, 0.22);
+}
+
+.sec{
+    --w: 2px; /* longest + thinnest */
+    --h: 108px;
+    --tail-offset: 18px;
+    --tail-w: 2px;
+    --tail-h: 18px;
+}
+
+.min{
+    --w: 4px; /* longer than hour */
+    --h: 86px;
+}
+
+.hour{
+    --w: 6px; /* shortest + thickest */
+    --h: 56px;
+    box-shadow: 0 0 22px rgba(255,255,255,0.14);
+}
+
+/* Ensure each hand uses a glow for subtle premium look */
+.hand i{
+    filter: drop-shadow(0 0 8px var(--glow));
+}
+
+
+/* Digital clock */
+.digital{
+    width: min(520px, 100%);
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.18);
+}
+:root[data-theme="light"] .digital{
+    border-color: rgba(27,27,34,0.12);
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.08);
+}
+.digital-day{
+    font-size: clamp(16px, 2.8vw, 22px);
+    font-weight: 800;
+    margin-bottom: 0.15rem;
+}
+.digital-date{
+    font-size: clamp(13px, 2.3vw, 17px);
+    opacity: 0.9;
+    margin-bottom: 0.55rem;
+}
+.digital-time{
+    font-size: clamp(18px, 3.5vw, 26px);
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    text-shadow: 0 0 18px rgba(0, 212, 255, 0.18);
+}
+/* Ensure numbers are positioned over before layer */
+.clock span{ color: var(--text); }
+
+@media (max-width: 420px){
+    .topbar{ justify-content: center; }
+    .theme-text{ display: none; }
+
+    .digital{
+        width: 100%;
+        padding: 0.8rem 0.9rem;
+    }
+}
+
+
+

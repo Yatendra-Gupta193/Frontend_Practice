@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Analog Clock</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="theme-icon" aria-hidden="true">☀️</span>
+          <span class="theme-text">Light Mode</span>
+        </button>
+
+      </div>
+
+      <div class="clock" id="clock">
+        <div class="ticks" aria-hidden="true"></div>
+
+        <div style="--clr: #ffffff; --h: 58px" id="hour" class="hand hour">
+          <i></i>
+        </div>
+        <div style="--clr: #00d4ff; --h: 74px" id="min" class="hand min">
+          <i></i>
+        </div>
+        <div style="--clr: #ff4757; --h: 86px" id="sec" class="hand sec">
+          <i></i>
+          <span class="sec-tail" aria-hidden="true"></span>
+        </div>
+
+        <!-- <span style="--i: 1" class="num"><b>1</b></span>
+        <span style="--i: 2" class="num"><b>2</b></span>
+        <span style="--i: 3" class="num"><b>3</b></span>
+        <span style="--i: 4" class="num"><b>4</b></span>
+        <span style="--i: 5" class="num"><b>5</b></span>
+        <span style="--i: 6" class="num"><b>6</b></span>
+        <span style="--i: 7" class="num"><b>7</b></span>
+        <span style="--i: 8" class="num"><b>8</b></span>
+        <span style="--i: 9" class="num"><b>9</b></span>
+        <span style="--i: 10" class="num"><b>10</b></span>
+        <span style="--i: 11" class="num"><b>11</b></span>
+        <span style="--i: 12" class="num"><b>12</b></span> -->
+
+
+        <div class="center-dot" aria-hidden="true"></div>
+      </div>
+
+      <div class="digital" aria-live="polite">
+        <div class="digital-day" id="digitalDay">Sunday</div>
+        <div class="digital-date" id="digitalDate">07 June 2026</div>
+        <div class="digital-time" id="digitalTime">10:25:43 PM</div>
+      </div>
+    </div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>

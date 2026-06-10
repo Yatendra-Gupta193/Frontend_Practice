@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-icon">📒</div>
+                <div>
+                    <h1>Notes Pro</h1>
+                    <p class="subtitle">Organize Your Ideas Efficiently</p>
+                </div>
+            </div>
+
+            <div class="toolbar glass">
+                <div class="toolbar-left">
+                    <div class="search-wrap">
+                        <span class="search-icon">🔍</span>
+                        <input id="search-input" type="text" placeholder="Search notes..." autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="toolbar-right">
+                    <!-- <div class="field-inline">
+                        <label for="sort-select">Sort</label>
+                        <select id="sort-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="az">A-Z</option>
+                            <option value="za">Z-A</option> -->
+                        </select>
+                    </div>
+
+                    <button id="saved-notes-btn" type="button" class="btn-secondary">📌 Saved Notes</button>
+
+                    <button id="theme-toggle" type="button" class="btn-secondary">🌙 Dark</button>
+
+                    <div class="total-counter" id="total-notes">📒 Total Notes: 0</div>
+                </div>
+
+            </div>
+        </header>
+
+        <section id="saved-section" class="glass" style="display:none; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h2 style="margin-bottom: 0.75rem;">📌 Saved Notes</h2>
+            <div id="saved-notes-grid" class="notes-grid" style="gap: 1rem;"></div>
+            <div style="margin-top: 1rem; display:flex; justify-content:flex-start;">
+                <button type="button" id="back-to-home-btn" class="btn-secondary">Back</button>
+            </div>
+        </section>
+
+
+        <form id="note-form" class="note-form glass" autocomplete="off">
+            <div class="form-top">
+                <div class="title-wrap">
+                    <input type="text" id="note-title" placeholder="Title..." required maxlength="50" />
+                    <!-- <div class="char-counter" id="title-counter">0 / 50</div> -->
+                </div>
+                <div class="color-wrap">
+                    <!-- <label for="color-select">Color</label>
+                    <select id="color-select" aria-label="Note color">
+                        <option value="yellow">🟡 Yellow</option>
+                        <option value="green">🟢 Green</option>
+                        <option value="blue">🔵 Blue</option>
+                        <option value="purple">🟣 Purple</option>
+                    </select> -->
+                </div>
+            </div>
+
+            <div class="content-wrap">
+                <textarea id="note-content" placeholder="Take a note..." required maxlength="500"></textarea>
+                <!-- <div class="char-counter" id="content-counter">0 / 500</div> -->
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-primary">➕ Add Note</button>
+        </form>
+
+        <section class="empty-state glass" id="empty-state" style="display:none;">
+            <div class="empty-icon">📒</div>
+            <h2>No Notes Yet</h2>
+            <p>Create your first note.</p>
+        </section>
+
+        <section id="notes-grid" class="notes-grid"></section>
+
+        <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+        <div id="edit-modal" class="modal" style="display:none;">
+            <div class="modal-backdrop" data-close-modal="true"></div>
+            <div class="modal-panel glass" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+                <div class="modal-header">
+                    <h2 id="edit-modal-title">✏ Edit Note</h2>
+                    <button type="button" class="modal-close" data-close-modal="true">✕</button>
+                </div>
+
+                <form id="edit-form" class="edit-form" autocomplete="off">
+                    <input type="hidden" id="edit-id" />
+
+                    <div class="form-top">
+                        <div class="title-wrap">
+                            <input type="text" id="edit-title" placeholder="Title..." required maxlength="50" />
+                            <div class="char-counter" id="edit-title-counter">0 / 50</div>
+                        </div>
+
+                        <div class="color-wrap">
+                            <label for="edit-color-select">Color</label>
+                            <select id="edit-color-select">
+                                <option value="yellow">🟡 Yellow</option>
+                                <option value="green">🟢 Green</option>
+                                <option value="blue">🔵 Blue</option>
+                                <option value="purple">🟣 Purple</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="content-wrap">
+                        <textarea id="edit-content" placeholder="Take a note..." required maxlength="500"></textarea>
+                        <div class="char-counter" id="edit-content-counter">0 / 500</div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" data-close-modal="true">Cancel</button>
+                        <button type="submit" class="btn-primary">✅ Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

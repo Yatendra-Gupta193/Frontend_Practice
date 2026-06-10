@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="topbar">
+        <div class="brand"><h1>Calculator</h2></div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__text">Theme</span>
+        </button>
+      </div>
+
+      <div class="screen">
+        <div class="expression" id="expression">&nbsp;</div>
+        <input type="text" class="display" id="display" aria-label="Calculator display" />
+      </div>
+
+      <div class="main">
+        <div class="buttons" id="buttons">
+          <button class="operator btn-ac" data-value="AC">AC</button>
+          <button class="operator btn-del" data-value="DEL">DEL</button>
+          <button class="operator" data-value="%">%</button>
+          <button class="operator" data-value="/">/</button>
+
+          <button data-value="7">7</button>
+          <button data-value="8">8</button>
+          <button data-value="9">9</button>
+          <button class="operator" data-value="*">*</button>
+
+          <button data-value="4">4</button>
+          <button data-value="5">5</button>
+          <button data-value="6">6</button>
+          <button class="operator" data-value="-">-</button>
+
+          <button data-value="1">1</button>
+          <button data-value="2">2</button>
+          <button data-value="3">3</button>
+          <button class="operator" data-value="+">+</button>
+
+          <button data-value="0" class="btn-0">0</button>
+          <button data-value="00">00</button>
+          <button data-value=".">.</button>
+          <button class="operator btn-equals" data-value="=">=</button>
+        </div>
+
+        <aside class="history" aria-label="Calculation history">
+          <div class="history__header">
+            <div class="history__title">History</div>
+            <button class="history__clear" id="clearHistory" type="button">Clear</button>
+          </div>
+          <ul class="history__list" id="historyList"></ul>
+          <div class="history__empty" id="historyEmpty">No history yet</div>
+        </aside>
+      </div>
+    </div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
