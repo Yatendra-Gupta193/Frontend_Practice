@@ -1,4 +1,4 @@
-# Frontend Practice Projects 🚀          
+# Frontend Practice Projects 🚀           
    
 A collection of frontend projects built using HTML, CSS, and JavaScript to improve web development skills through hands-on practice.
 
