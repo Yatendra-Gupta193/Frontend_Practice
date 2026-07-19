@@ -11,7 +11,7 @@ This repository contains multiple frontend projects created for learning and pra
 - Responsive Design
 - JavaScript DOM Manipulation
 - Events Handling
-- Local Storage
+- Local Storage   
 - Canvas API
 - Game Logic
 - UI/UX Design
